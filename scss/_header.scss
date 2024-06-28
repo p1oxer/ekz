@@ -1,0 +1,211 @@
+.header {
+    background-color: $mainPink;
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+
+    // .header__body
+    &__body {
+        padding: 9px 0;
+    }
+}
+
+.body-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    @media (max-width:$mobileSmall) {
+        justify-content: space-between;
+    }
+
+    // .body-header__logo
+    &__logo {
+        @include adaptiveValue("margin-right", 100, 20, 1920, 768);
+
+        @media (max-width:$mobileSmall) {
+            img {
+                width: rem(61);
+            }
+        }
+    }
+
+    // .body-header__nav
+    &__nav {
+        @media (max-width:$mobile) {
+            display: none;
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    // .body-header__list
+    &__list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 35px;
+    }
+
+    // .body-header__item
+    &__item {}
+
+    // .body-header__link
+    &__link {
+        @media (any-hover: hover) {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    // .body-header__contacts
+    &__contacts {
+        display: flex;
+        flex-direction: row;
+        // align-items: center;
+        gap: 35px;
+        margin-left: auto;
+        text-align: right;
+
+        @media (max-width:$mobile) {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        @media (max-width:$mobileSmall) {
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        a {
+            @media (any-hover: hover) {
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+
+    }
+}
+
+.menu {
+    @media (min-width: $mobile) {
+        display: none;
+    }
+}
+
+.icon-menu {
+
+    @media (max-width: $mobile) {
+        display: block;
+        position: relative;
+        width: 25px;
+        height: 18px;
+        cursor: pointer;
+        z-index: 6;
+        background-color: transparent;
+        margin-left: 25px;
+
+        span,
+        &::before,
+        &::after {
+            content: "";
+            transition: all 0.3s ease 0s;
+            right: 0;
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 3px;
+        }
+
+        &::before {
+            top: 0;
+        }
+
+        &::after {
+            bottom: 0;
+        }
+
+        span {
+            top: calc(50% - 1px);
+        }
+
+        .menu-open & {
+            span {
+                width: 0;
+                background-color: #fff;
+            }
+
+            &::before,
+            &::after {
+                background-color: #fff;
+            }
+
+            &::before {
+                top: calc(50% - 1px);
+                transform: rotate(-45deg);
+            }
+
+            &::after {
+                top: calc(50% - 1px);
+                transform: rotate(45deg);
+            }
+        }
+    }
+}
+
+.menu {
+    &__body {
+        z-index: 5;
+        position: relative;
+        display: none;
+
+        @media (max-width: $mobile) {
+            position: fixed;
+            width: 80%;
+            height: 100%;
+            top: 0;
+            left: 100%;
+            display: flex;
+            text-align: right;
+            justify-content: center;
+            flex-direction: column;
+            background-color: $mainPink;
+            transition: left 0.3s ease 0s;
+
+            .menu-open & {
+                left: 20%;
+            }
+        }
+    }
+
+    &__contacts {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        @media (min-width:$mobileSmall) {
+            display: none;
+            visibility: hidden;
+            opacity: 0;
+        }
+    }
+
+    &__list {
+        padding: 0 15px;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+        gap: 25px;
+        font-size: 25px;
+    }
+
+    &__link {
+        color: #fff;
+    }
+}
